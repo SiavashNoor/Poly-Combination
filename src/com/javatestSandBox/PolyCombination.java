@@ -22,19 +22,20 @@ public class PolyCombination {
         oneTermArray = new int[numberOfInputTerms];
         mainArray = new int[(int) calculateCombinationSize(numberOfInputTerms, maxDegree)][numberOfInputTerms];
         int rowPointer = 0;
-        int verticalPointer = 0;
+        int verticalPointer;
 
         copyToMainArray(oneTermArray, rowPointer);
 
 
         for (int sumOfDegrees = 0; sumOfDegrees <= maxDegree; sumOfDegrees++) {
-
-
-            oneTermArray[0] = sumOfDegrees;
-            copyToMainArray(oneTermArray, rowPointer);
+            verticalPointer = 0;
             cleanArray(oneTermArray);
+            oneTermArray[verticalPointer] = sumOfDegrees;
+            copyToMainArray(oneTermArray, rowPointer);
             rowPointer++;
             System.out.println(rowPointer);
+
+
             while (oneTermArray[oneTermArray.length - 1] != sumOfDegrees) {
                 if (valueInPointerIsBreakable(verticalPointer, oneTermArray)) {
                     oneTermArray[verticalPointer] -= 1;
@@ -47,7 +48,7 @@ public class PolyCombination {
 
                 } else {
                     verticalPointer--;
-
+                    System.out.println("verticalpointer " + verticalPointer);
                 }
 
 
