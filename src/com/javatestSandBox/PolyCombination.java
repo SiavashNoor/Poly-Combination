@@ -31,12 +31,9 @@ public class PolyCombination {
             cleanArray(oneTermArray);
             oneTermArray[verticalPointer] = sumOfDegrees;
             copyToMainArray(oneTermArray, rowPointer);
-            System.out.println(rowPointer);
+
             rowPointer++;
-
-
-
-
+            
             while (oneTermArray[oneTermArray.length - 1] != sumOfDegrees) {
                 if (valueInPointerIsBreakable(verticalPointer, oneTermArray)) {
                     oneTermArray[verticalPointer] -= 1;
@@ -44,12 +41,10 @@ public class PolyCombination {
                     oneTermArray[verticalPointer] = sumOfDegrees - sumArrayTerms(oneTermArray, 0, verticalPointer - 1);
                     cleanArray(oneTermArray, verticalPointer + 1, oneTermArray.length - 1);
                     copyToMainArray(oneTermArray, rowPointer);
-                    System.out.println("verticalpointer " + verticalPointer +"row pointer "+rowPointer);
                     rowPointer++;
                 } else {
                     while(!valueInPointerIsBreakable(verticalPointer, oneTermArray)){
                         verticalPointer--;
-                        System.out.println(" verticalpointer to back "+verticalPointer );
 
                     }
                 }
