@@ -26,14 +26,15 @@ public class PolyCombination {
 
         copyToMainArray(oneTermArray, rowPointer);
 
-
         for (int sumOfDegrees = 0; sumOfDegrees <= maxDegree; sumOfDegrees++) {
             verticalPointer = 0;
             cleanArray(oneTermArray);
             oneTermArray[verticalPointer] = sumOfDegrees;
             copyToMainArray(oneTermArray, rowPointer);
-            rowPointer++;
             System.out.println(rowPointer);
+            rowPointer++;
+
+
 
 
             while (oneTermArray[oneTermArray.length - 1] != sumOfDegrees) {
@@ -43,28 +44,25 @@ public class PolyCombination {
                     oneTermArray[verticalPointer] = sumOfDegrees - sumArrayTerms(oneTermArray, 0, verticalPointer - 1);
                     cleanArray(oneTermArray, verticalPointer + 1, oneTermArray.length - 1);
                     copyToMainArray(oneTermArray, rowPointer);
+                    System.out.println("verticalpointer " + verticalPointer +"row pointer "+rowPointer);
                     rowPointer++;
-
-
                 } else {
-                    verticalPointer--;
-                    System.out.println("verticalpointer " + verticalPointer);
+                    while(!valueInPointerIsBreakable(verticalPointer, oneTermArray)){
+                        verticalPointer--;
+                        System.out.println(" verticalpointer to back "+verticalPointer );
+
+                    }
                 }
-
-
             }
         }
         System.out.println(Arrays.deepToString(mainArray));
-
         System.out.println(mainArray.length);
     }
-
 
     //this method is used to calculate the final 2D array size which contains all the possibilities.
     public long calculateCombinationSize(int numberOfInputTerms, int maxDegree) {
         return (calculateFactorial(numberOfInputTerms + maxDegree) / (calculateFactorial(numberOfInputTerms) * calculateFactorial(maxDegree)));
     }
-
 
     //a recursion method to calculate Factorial .
     public long calculateFactorial(int x) {
@@ -85,7 +83,6 @@ public class PolyCombination {
     public void cleanArray(int[] array, int start, int end) {
         for (int i = start; i <= end; i++)
             array[i] = 0;
-
     }
 
     public void cleanArray(int[] array) {
@@ -101,7 +98,8 @@ public class PolyCombination {
     }
 
     public boolean valueInPointerIsBreakable(int pointer, int[] oneTermArray) {
-        if (oneTermArray[pointer] >= 0 & pointer < oneTermArray.length - 1) {
+        if (oneTermArray[pointer] >
+                0 && pointer < oneTermArray.length - 1) {
             return true;
         } else if (oneTermArray[pointer] == 0 & pointer == oneTermArray.length - 1) {
             return false;
