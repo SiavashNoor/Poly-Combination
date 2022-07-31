@@ -33,7 +33,7 @@ public class PolyCombination {
             copyToMainArray(oneTermArray, rowPointer);
 
             rowPointer++;
-            
+
             while (oneTermArray[oneTermArray.length - 1] != sumOfDegrees) {
                 if (valueInPointerIsBreakable(verticalPointer, oneTermArray)) {
                     oneTermArray[verticalPointer] -= 1;
@@ -100,4 +100,5 @@ public class PolyCombination {
             return false;
         } else return false;
     }
+
 }
